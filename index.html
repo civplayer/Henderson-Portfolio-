@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thomas Henderson - Instructional Designer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a3a52;
+            --accent: #e67e22;
+            --text: #2c3e50;
+            --light: #f8f9fa;
+            --border: #dee2e6;
+            --success: #27ae60;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Work Sans', sans-serif;
+            color: var(--text);
+            line-height: 1.7;
+            background: var(--light);
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Crimson Pro', serif;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #2c5f7f 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="%23ffffff" opacity="0.1"/></svg>') repeat;
+            opacity: 0.1;
+        }
+        
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        header p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Navigation */
+        nav {
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        nav a {
+            color: var(--primary);
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            display: block;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+        
+        nav a:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        
+        /* Sections */
+        section {
+            background: white;
+            margin-bottom: 3rem;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+        }
+        
+        section h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--accent);
+        }
+        
+        section h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+        }
+        
+        section h4 {
+            font-size: 1.4rem;
+            color: var(--text);
+            margin: 1.5rem 0 0.75rem;
+        }
+        
+        /* Portfolio Items */
+        .portfolio-item {
+            background: var(--light);
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border-radius: 8px;
+            border-left: 5px solid var(--accent);
+        }
+        
+        .portfolio-item h3 {
+            margin-top: 0;
+        }
+        
+        .meta {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        
+        /* Links */
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+        
+        .btn:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            text-decoration: none;
+        }
+        
+        /* Lists */
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        li {
+            margin-bottom: 0.75rem;
+        }
+        
+        /* Skills Tags */
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+        
+        .skill-tag {
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        /* Metrics */
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .metric {
+            background: linear-gradient(135deg, var(--success) 0%, #229954 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            font-family: 'Crimson Pro', serif;
+        }
+        
+        .metric-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+        
+        footer a {
+            color: var(--accent);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            
+            header p {
+                font-size: 1.1rem;
+            }
+            
+            section {
+                padding: 2rem;
+            }
+            
+            .portfolio-item {
+                padding: 1.5rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+        }
+        
+        /* Blockquote */
+        blockquote {
+            border-left: 4px solid var(--accent);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: #555;
+        }
+        
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Highlight boxes */
+        .highlight {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+        
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid var(--success);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Thomas Henderson</h1>
+        <p>Instructional Designer | Adult Learning Specialist | Data-Driven Educator</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#elearning">E-Learning</a></li>
+            <li><a href="#modules">Learning Modules</a></li>
+            <li><a href="#data">Data & Analytics</a></li>
+            <li><a href="#infoarch">Information Architecture</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <!-- ABOUT SECTION -->
+        <section id="about">
+            <h2>About Me</h2>
+            
+            <h3>From Classroom to Curriculum: Building Learning Experiences That Work</h3>
+            
+            <p>I'm an educator transitioning into instructional design, bringing five years of experience creating high-impact learning solutions for adult learners in challenging educational contexts. My work consistently delivers measurable results—most recently, helping incarcerated students achieve test scores 11-32% above North Carolina state averages on high school equivalency exams.</p>
+            
+            <h4>What I Bring to Instructional Design</h4>
+            
+            <p><strong>Evidence-Based Design:</strong> My teaching background means I don't just create content—I design learning experiences grounded in how adults actually learn. Every module I build is tested against real learner outcomes, then refined based on performance data.</p>
+            
+            <p><strong>Complex Audience Expertise:</strong> I specialize in creating accessible, engaging instruction for learners who face significant barriers to education. Whether it's adults returning to learning after 10+ year gaps, professionals learning new skills, or students navigating institutional constraints, I design for the full spectrum of learner needs and contexts.</p>
+            
+            <p><strong>Data-Driven Iteration:</strong> I use assessment data to inform instructional design decisions. At Richmond Correctional Institution, I analyzed FastBridge screening results to identify content gaps, then redesigned curriculum that produced a 250% increase in assessment participation and measurable performance improvements across all subject areas.</p>
+            
+            <div class="metrics">
+                <div class="metric">
+                    <div class="metric-value">250%</div>
+                    <div class="metric-label">Increase in Assessment Participation</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">32%</div>
+                    <div class="metric-label">Above State Average (Math)</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">55%</div>
+                    <div class="metric-label">College-Ready Graduates</div>
+                </div>
+            </div>
+            
+            <h4>Current Focus</h4>
+            
+            <p>I'm completing my <strong>MS in Technical Communication</strong> from NC State University (graduating May 2026) while teaching full-time and developing e-learning courses using Articulate Rise 360. This combination gives me both theoretical frameworks and hands-on technical skills to build effective digital learning experiences.</p>
+            
+            <p>My instructional design work spans:</p>
+            <ul>
+                <li><strong>E-learning development</strong> using Articulate Rise 360</li>
+                <li><strong>Visual learning materials</strong> and document design for diverse learning styles</li>
+                <li><strong>Curriculum design</strong> for adult high school equivalency preparation</li>
+                <li><strong>Assessment design</strong> aligned to Bloom's taxonomy and performance standards</li>
+                <li><strong>Data visualization</strong> communicating learning outcomes to stakeholders</li>
+                <li><strong>Information architecture</strong> for knowledge management systems</li>
+            </ul>
+            
+            <h4>Why Instructional Design?</h4>
+            
+            <p>Teaching showed me the power of well-designed learning experiences, but it also revealed the limitations of one-to-one instruction. Instructional design allows me to scale that impact—creating learning solutions that reach hundreds or thousands of learners while maintaining the same careful attention to learner needs, clear learning objectives, and measurable outcomes that defined my classroom work.</p>
+            
+            <div class="skills">
+                <span class="skill-tag">Adobe Creative Suite</span>
+                <span class="skill-tag">Articulate Rise 360</span>
+                <span class="skill-tag">Visual Communication & Design</span>
+                <span class="skill-tag">Curriculum Design</span>
+                <span class="skill-tag">Assessment Design</span>
+                <span class="skill-tag">Adult Learning Theory</span>
+                <span class="skill-tag">Data Analysis</span>
+                <span class="skill-tag">Learning Analytics</span>
+                <span class="skill-tag">Google Workspace</span>
+                <span class="skill-tag">Microsoft Office</span>
+            </div>
+        </section>
+        
+        <!-- E-LEARNING SECTION -->
+        <section id="elearning">
+            <h2>E-Learning Development</h2>
+            
+            <div class="portfolio-item">
+                <h3>Teaching the HiSET: Interactive Course for Educators</h3>
+                <p class="meta">Interactive E-Learning Module | Articulate Rise 360</p>
+                
+                <a href="https://rise.articulate.com/share/6iJW8E-t_afADs2-ywoAkPEH2_twjYO6" class="btn" target="_blank">🔗 View Live Course</a>
+                
+                <h4>Context</h4>
+                <p>This self-paced e-learning course was designed to onboard educators transitioning into adult high school equivalency instruction. The primary challenge was helping licensed K-12 teachers adapt their pedagogical approaches to serve adult learners in correctional and community education settings, while building confidence in teaching unfamiliar content areas like social studies and science at the high school equivalency level.</p>
+                
+                <p><strong>Target Audience:</strong> Adult education instructors, former K-12 educators, GED/HiSET coordinators, adult literacy volunteers</p>
+                <p><strong>Duration:</strong> 6 lessons, 2-3 hours total</p>
+                <p><strong>Tool:</strong> Articulate Rise 360</p>
+                
+                <h4>Learning Outcomes</h4>
+                <p>Upon completion, educators will be able to:</p>
+                <ol>
+                    <li>Differentiate between HiSET and GED exam structures, formats, and requirements</li>
+                    <li>Apply appropriate instructional strategies for each HiSET content area</li>
+                    <li>Address unique challenges faced by adult learners in HiSET preparation</li>
+                    <li>Implement effective assessment and practice test strategies</li>
+                    <li>Locate and customize HiSET-specific teaching materials</li>
+                    <li>Support students in post-HiSET educational and career planning</li>
+                </ol>
+                
+                <h4>Instructional Design Decisions</h4>
+                
+                <p><strong>Adult Learning Principles Applied:</strong></p>
+                <ul>
+                    <li><strong>Self-Paced Flexibility:</strong> Designed for busy professionals who need to fit training around existing work schedules</li>
+                    <li><strong>Immediate Relevance:</strong> Every lesson connects directly to real teaching scenarios educators will face</li>
+                    <li><strong>Confidence Building:</strong> Explicitly addresses teacher anxiety about teaching unfamiliar content</li>
+                </ul>
+                
+                <p><strong>Interactive Elements:</strong></p>
+                <ul>
+                    <li>Knowledge checks for immediate feedback</li>
+                    <li>Scenario-based learning with authentic teaching situations</li>
+                    <li>Drag-and-drop activities for categorizing exam formats</li>
+                    <li>Multimedia integration (video, infographics, audio)</li>
+                    <li>Downloadable resource library with templates and checklists</li>
+                </ul>
+                
+                <div class="success-box">
+                    <h4>Outcomes & Impact</h4>
+                    <p><strong>Program Application:</strong> Currently in use for onboarding new instructors at Richmond Correctional Institution's HiSET program, which achieved:</p>
+                    <ul>
+                        <li>250% increase in student assessment participation</li>
+                        <li>Students scoring 11-32% above North Carolina state averages across all subjects</li>
+                        <li>55% of graduates achieving college-ready benchmarks</li>
+                    </ul>
+                </div>
+                
+                <div class="skills">
+                    <span class="skill-tag">E-Learning Development</span>
+                    <span class="skill-tag">Adult Learning Theory</span>
+                    <span class="skill-tag">Scenario-Based Learning</span>
+                    <span class="skill-tag">Interactive Assessment</span>
+                    <span class="skill-tag">Articulate Rise</span>
+                    <span class="skill-tag">Accessibility Standards</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- LEARNING MODULES SECTION -->
+        <section id="modules">
+            <h2>Learning Module Design</h2>
+            
+            <div class="portfolio-item">
+                <h3>The Great Jewish-Roman War: Historical Analysis & Critical Thinking</h3>
+                <p class="meta">Learning Module for Adult High School Equivalency Preparation</p>
+                
+                <h4>Context</h4>
+                <p>Adult learners in correctional education settings often struggle with social studies content that feels disconnected from their lives. This module teaches historical analysis skills, cause-and-effect reasoning, and primary source evaluation through the compelling narrative of the Jewish-Roman War (66-73 CE)—a conflict offering clear parallels to modern geopolitical tensions.</p>
+                
+                <p><strong>Target Audience:</strong> Adult learners (ages 22-55) preparing for HiSET social studies exam</p>
+                <p><strong>Duration:</strong> 3-4 class sessions (90-120 minutes total)</p>
+                
+                <h4>Learning Objectives</h4>
+                <ol>
+                    <li>Analyze cause-and-effect relationships in historical events</li>
+                    <li>Evaluate primary sources and identify bias in historical narratives</li>
+                    <li>Compare historical and contemporary conflicts</li>
+                    <li>Construct historical arguments using evidence from multiple sources</li>
+                </ol>
+                
+                <h4>Why This Topic?</h4>
+                <p>The Jewish-Roman War offers multiple entry points for engagement:</p>
+                <ul>
+                    <li><strong>Power dynamics:</strong> Occupation, resistance, and rebellion resonate with students who have experienced institutional authority</li>
+                    <li><strong>Moral complexity:</strong> No clear "good guys" or "bad guys"</li>
+                    <li><strong>Modern parallels:</strong> Connections to contemporary conflicts without overtly political framing</li>
+                    <li><strong>Dramatic narrative:</strong> Inherently compelling story that maintains student interest</li>
+                </ul>
+                
+                <h4>Scaffolding Strategy</h4>
+                <p>The module uses a carefully sequenced progression from concrete to abstract:</p>
+                <ul>
+                    <li><strong>Session 1:</strong> Historical context & narrative (building foundational knowledge)</li>
+                    <li><strong>Session 2:</strong> Primary source analysis (evaluating evidence and recognizing bias)</li>
+                    <li><strong>Session 3:</strong> Cause & effect analysis (understanding complex historical causation)</li>
+                    <li><strong>Session 4:</strong> Contemporary connections & assessment (transfer and application)</li>
+                </ul>
+                
+                <div class="success-box">
+                    <h4>Outcomes & Impact</h4>
+                    <ul>
+                        <li>95% of students who completed the module successfully passed historical analysis questions on HiSET practice tests</li>
+                        <li>Students reported higher confidence with primary source analysis</li>
+                        <li>Module design adapted for other historical topics (American Revolution, Civil Rights Movement)</li>
+                    </ul>
+                    <blockquote>
+                        "This was the first time history made sense to me. I could see why things happened instead of just memorizing dates." — Student, age 34
+                    </blockquote>
+                </div>
+                
+                <div class="skills">
+                    <span class="skill-tag">Learning Objectives</span>
+                    <span class="skill-tag">Scaffolded Instruction</span>
+                    <span class="skill-tag">Primary Source Analysis</span>
+                    <span class="skill-tag">Assessment Design</span>
+                    <span class="skill-tag">Differentiation</span>
+                    <span class="skill-tag">Adult Learning</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- DATA & ANALYTICS SECTION -->
+        <section id="data">
+            <h2>Data & Learning Analytics</h2>
+            
+            <div class="portfolio-item">
+                <h3>Richmond HiSET Performance Analysis</h3>
+                <p class="meta">Data Visualization & Educational Impact Report</p>
+                
+                <p><em>[Add link to your Richmond PDF here]</em></p>
+                
+                <h4>Context</h4>
+                <p>This mid-year performance report was created to demonstrate program effectiveness to multiple stakeholder groups including prison administration, North Carolina Department of Public Instruction, and funding agencies. The challenge was translating complex assessment data into clear visual narratives that would resonate with non-technical audiences while maintaining statistical rigor.</p>
+                
+                <p><strong>Audience:</strong> Correctional facility administrators, state education officials, program funders</p>
+                <p><strong>Purpose:</strong> Demonstrate measurable student outcomes to support continued program funding</p>
+                <p><strong>Tools:</strong> Google Slides, FastBridge assessment platform</p>
+                
+                <h4>Key Findings Visualized</h4>
+                
+                <p><strong>1. FastBridge Screening Growth</strong></p>
+                <p>Assessment participation more than tripled from Fall 2024 to Spring 2025:</p>
+                <ul>
+                    <li>Reading screenings: 15 → 46 students (+207%)</li>
+                    <li>Math screenings: 16 → 56 students (+250%)</li>
+                </ul>
+                
+                <p><strong>2. Graduate Performance vs. North Carolina State Average</strong></p>
+                <p>Richmond graduates outperformed state average across all five subjects:</p>
+                <ul>
+                    <li>Writing: +11.1% above state average</li>
+                    <li>Reading: +14.5% above state average</li>
+                    <li><strong>Math: +32.3% above state average</strong></li>
+                    <li>Science: +12.0% above state average</li>
+                    <li>Social Studies: +22.9% above state average</li>
+                </ul>
+                
+                <p><strong>3. College Readiness Achievement</strong></p>
+                <p>55% of HiSET graduates demonstrated college-level readiness by scoring 15+ on at least one subject exam</p>
+                
+                <h4>Design Rationale</h4>
+                <ul>
+                    <li><strong>Color Strategy:</strong> Blue for student performance, gray for baselines, green for positive outcomes</li>
+                    <li><strong>Annotation Philosophy:</strong> Every chart includes clear labels, percentage increases, and plain-language interpretation</li>
+                    <li><strong>Information Hierarchy:</strong> Title → Context → Visualization → Key Finding → Callout boxes</li>
+                </ul>
+                
+                <div class="success-box">
+                    <h4>Impact</h4>
+                    <ul>
+                        <li>Presentation used in budget justification meetings with facility administration</li>
+                        <li>Data cited in state funding request documents</li>
+                        <li>Program secured continued funding for 2025-2026 based on demonstrated outcomes</li>
+                    </ul>
+                </div>
+                
+                <div class="skills">
+                    <span class="skill-tag">Data Analysis</span>
+                    <span class="skill-tag">Data Visualization</span>
+                    <span class="skill-tag">Stakeholder Communication</span>
+                    <span class="skill-tag">Statistical Presentation</span>
+                    <span class="skill-tag">Educational Assessment</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- INFORMATION ARCHITECTURE SECTION -->
+        <section id="infoarch">
+            <h2>Information Architecture</h2>
+            
+            <div class="portfolio-item">
+                <h3>Creative Writing Opportunity Database</h3>
+                <p class="meta">Information Architecture & User Experience Design</p>
+                
+                <a href="https://docs.google.com/spreadsheets/d/1qGsovHiDbExQZAIJa60t3OOYRb2aIHcMhZAsuWx_d5s/edit?usp=sharing" class="btn" target="_blank">📊 View Database</a>
+                
+                <h4>Context</h4>
+                <p>Graduate creative writing students face a persistent problem: finding relevant submission opportunities scattered across hundreds of literary magazines, contests, residencies, and fellowships is time-consuming and inefficient. This project created a centralized, filterable database of 975+ creative writing opportunities to streamline the discovery process.</p>
+                
+                <p><strong>Target Users:</strong> Creative writing students (undergraduate through PhD), faculty advisors, independent writers</p>
+                <p><strong>Team:</strong> Collaborative project with graduate writing program colleagues</p>
+                <p><strong>Tool:</strong> Google Sheets with advanced filtering</p>
+                
+                <h4>Information Architecture</h4>
+                
+                <p><strong>Core Fields:</strong></p>
+                <ul>
+                    <li><strong>Organization Name:</strong> Hyperlinked to official website</li>
+                    <li><strong>Deadline/Dates:</strong> Rolling deadlines, specific dates, seasonal windows</li>
+                    <li><strong>Opportunity Type:</strong> Residency, Publication, Contest, Fellowship, Workshop, Grant</li>
+                    <li><strong>Audience:</strong> Undergraduate, Graduate, MFA, PhD, All Levels</li>
+                    <li><strong>Genre:</strong> Poetry, Fiction, Nonfiction, All Genres, Playwriting, Screenwriting</li>
+                    <li><strong>Additional Info:</strong> Location, prize amounts, fees, special requirements</li>
+                </ul>
+                
+                <h4>User Experience Design</h4>
+                
+                <p><strong>Filter System:</strong></p>
+                <ul>
+                    <li>Single-select filters for Audience and Opportunity Type</li>
+                    <li>Multi-select filter for Genre (writers work across forms)</li>
+                    <li>Chronological sorting for deadline prioritization</li>
+                    <li>Built-in instructions embedded in spreadsheet</li>
+                </ul>
+                
+                <h4>Problem-Solution Mapping</h4>
+                
+                <p><strong>Problem:</strong> "There are too many literary magazines—I don't know where to start."<br>
+                <strong>Solution:</strong> Genre and Audience filters narrow 975 opportunities to manageable subsets</p>
+                
+                <p><strong>Problem:</strong> "I found the perfect contest but the deadline passed last week."<br>
+                <strong>Solution:</strong> Sortable deadline column allows filtering by date range</p>
+                
+                <p><strong>Problem:</strong> "I spent an hour researching a residency that's for visual artists only."<br>
+                <strong>Solution:</strong> Clear categorization provides quick screening before detailed research</p>
+                
+                <div class="success-box">
+                    <h4>Impact</h4>
+                    <ul>
+                        <li><strong>Database Scale:</strong> 975+ opportunities cataloged</li>
+                        <li><strong>Search Efficiency:</strong> Average discovery time reduced from 2-3 hours to 15-20 minutes</li>
+                    </ul>
+                    <blockquote>
+                        "This database saved me so much time. I found three perfect residencies in 10 minutes that I never would have discovered on my own." — Graduate Student, Fiction
+                    </blockquote>
+                </div>
+                
+                <div class="skills">
+                    <span class="skill-tag">Information Architecture</span>
+                    <span class="skill-tag">Database Design</span>
+                    <span class="skill-tag">User Experience</span>
+                    <span class="skill-tag">Documentation Writing</span>
+                    <span class="skill-tag">Collaborative Development</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CONTACT SECTION -->
+        <section id="contact">
+            <h2>Let's Connect</h2>
+            
+            <p>I'm actively seeking instructional design roles where I can apply my teaching expertise and technical communication skills to create effective learning experiences. I'm particularly interested in opportunities involving adult learners, performance-based training, or data-driven instructional improvement.</p>
+            
+            <h4>Contact Information</h4>
+            <p><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection#6001190f150e0713140f090320070d01090c4e030f0d"><span class="__cf_email__" data-cfemail="9ffee6f0eaf1f8ecebf0f6fcdff8f2fef6f3b1fcf0f2">[email&#160;protected]</span></a></p>
+            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/tom-h-5aa0b656/" target="_blank">linkedin.com/in/tom-h-5aa0b656</a></p>
+            <p><strong>Location:</strong> Newark, New Jersey | Open to remote opportunities</p>
+            
+            <h4>Education</h4>
+            <p><strong>MS in Technical Communication</strong> (In Progress)<br>
+            NC State University | Expected graduation: May 2026<br>
+            <em>Coursework includes visual communication, document design, information architecture, and multimedia composition<br>
+            Guest instructor for science communication course (Spring 2025)</em></p>
+            
+            <p><strong>BA in History, BA in Business Administration</strong><br>
+            University of North Carolina System</p>
+            
+            <p><strong>CELTA Certification</strong><br>
+            Cambridge Teaching Knowledge Test</p>
+            
+            <div class="highlight">
+                <p><em>"The best instructional design doesn't feel like teaching—it feels like the learner discovering what they need to know exactly when they need to know it."</em></p>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p>&copy; 2024 
